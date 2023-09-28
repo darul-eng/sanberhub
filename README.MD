@@ -32,4 +32,199 @@ Untuk Menggunakan Aplikasi ini, dapat melalui dua cara oleh karena itu anda perl
 
 ### Endpoints
 
+### 1. Daftar Akun
 
+``
+POST http://localhost:3000/api/v1/daftar
+``
+#### Header
+
+`Accept: application/json`
+
+`Content-Type: application/json`
+
+#### Payload
+
+```json
+{
+   "nama": "Nama",
+   "nik": 123456,
+   "no_hp": "08123456789"
+}
+```
+
+
+### Response
+#### Success - 200 OK
+
+```json
+{
+   "saldo": 105000,
+   "status": 200
+}
+```
+
+#### Error - 400 Bad Request
+
+```json
+{
+   "status": 400,
+   "remark": "error message ...."
+}
+```
+
+
+### 2. Menambah saldo
+
+``
+POST http://localhost:3000/api/v1/tabung
+``
+
+#### Header
+
+`Accept: application/json`
+
+`Content-Type: application/json`
+
+#### Payload
+
+```json
+{
+   "no_rekening": 110201,
+   "nominal": 5000
+}
+```
+
+### Response
+#### Success - 200 OK
+
+```json
+{
+   "saldo": 105000,
+   "status": 200
+}
+```
+
+#### Error - 400 Bad Request
+
+```json
+{
+   "status": 400,
+   "remark": "error message ...."
+}
+```
+### 3. Menarik saldo
+
+#### URL Endpoint
+
+`POST http://localhost:3000/api/v1/tarik`
+
+#### Header
+
+`Accept: application/json`
+
+`Content-Type: application/json`
+
+#### Payload
+
+```json
+{
+   "no_rekening": 110201,
+   "nominal": 5000
+}
+```
+
+### Response
+#### Success - 200 OK
+
+```json
+{
+   "saldo": 105000,
+   "status": 200
+}
+```
+
+#### Error - 400 Bad Request
+
+```json
+{
+   "status": 400,
+   "remark": "error message ...."
+}
+```
+
+### 4. Cek saldo
+
+#### URL Endpoint
+`GET http://localhost:3000/api/v1/saldo/:no_rekening`
+
+### Header
+
+- `Accept: application/json`
+- `Content-Type: application/json`
+
+### Payload
+
+Tidak ada payload yang diperlukan untuk permintaan ini.
+
+### Response
+#### Success - 200 OK
+
+```json
+{
+   "saldo": 105000,
+   "status": 200
+}
+```
+
+#### Error - 400 Bad Request
+
+```json
+{
+   "status": 400,
+   "remark": "error message ...."
+}
+```
+
+### 5. Cek Mutasi
+
+Endpoint ini digunakan untuk memeriksa mutasi pada akun bank berdasarkan nomor rekening.
+
+#### URL Endpoint
+
+`GET http://localhost:3000/api/v1/mutasi/:no_rekening`
+
+### Header
+
+- `Accept: application/json`
+- `Content-Type: application/json`
+
+### Payload
+
+Tidak ada payload yang diperlukan untuk permintaan ini.
+
+### Response
+
+#### Success - 200 OK
+
+```json
+{
+  "mutasi": [
+    {
+      "waktu": "2023-09-28T11:01:22.194783Z",
+      "kode_transaksi": "C",
+      "nominal": 5000
+    }
+  ],
+  "status": 200
+}
+```
+
+#### Error - 400 Bad Request
+
+```json
+{
+   "status": 400,
+   "remark": "error message ...."
+}
+```
