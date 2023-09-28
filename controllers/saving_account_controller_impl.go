@@ -38,13 +38,13 @@ func (controller *SavingAccountControllerImpl) Deposit(ctx echo.Context) error {
 }
 
 func (controller *SavingAccountControllerImpl) Withdraw(ctx echo.Context) error {
-	depositRequest := api.DepositOrWithdrawRequest{}
+	withdrawRequest := api.DepositOrWithdrawRequest{}
 
-	err := ctx.Bind(&depositRequest)
+	err := ctx.Bind(&withdrawRequest)
 	helpers.PanicIfError(err)
 
-	depositRequest.Amount = -depositRequest.Amount
-	balance, err := controller.SavingAccountService.Update(ctx, depositRequest)
+	withdrawRequest.Amount = -withdrawRequest.Amount
+	balance, err := controller.SavingAccountService.Update(ctx, withdrawRequest)
 	if err != nil {
 		return ctx.JSON(http.StatusBadRequest, map[string]interface{}{
 			"status": http.StatusBadRequest,

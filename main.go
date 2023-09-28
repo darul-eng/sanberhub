@@ -34,11 +34,12 @@ func main() {
 	transactionService := services.NewTransactionService(savingAccountRepository, transactionRepository, db, validate)
 	transactionController := controllers.NewTransactionController(transactionService)
 
-	server.POST("/api/v1/daftar", userController.Register)
-	server.POST("/api/v1/tabung", savingAccountController.Deposit)
-	server.POST("/api/v1/tarik", savingAccountController.Withdraw)
-	server.GET("/api/v1/saldo/:no_rekening", savingAccountController.Balance)
-	server.GET("/api/v1/mutasi/:no_rekening", transactionController.Statement)
+	routeGroup := server.Group("/api/v1")
+	routeGroup.POST("/daftar", userController.Register)
+	routeGroup.POST("/tabung", savingAccountController.Deposit)
+	routeGroup.POST("/tarik", savingAccountController.Withdraw)
+	routeGroup.GET("/saldo/:no_rekening", savingAccountController.Balance)
+	routeGroup.GET("/mutasi/:no_rekening", transactionController.Statement)
 
 	if err := server.Start(":3000"); err != http.ErrServerClosed {
 		log.Fatal(err)

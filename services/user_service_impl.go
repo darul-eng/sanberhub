@@ -44,8 +44,8 @@ func (service *UserServiceImpl) Register(ctx echo.Context, request api.RegisterR
 		Phone: request.Phone,
 	}
 
-	userFind := service.UserRepository.Find(ctx.Request().Context(), tx, user)
-	if userFind.ID != 0 {
+	foundedUser := service.UserRepository.Find(ctx.Request().Context(), tx, user)
+	if foundedUser.ID != 0 {
 		return 0, errors.New("nik atau nomor hp telah digunakan")
 	}
 
