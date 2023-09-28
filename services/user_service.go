@@ -1,10 +1,10 @@
 package services
 
 import (
-	"context"
+	"github.com/labstack/echo/v4"
 	"sanberhub/models/api"
 )
 
 type UserService interface {
-	Register(ctx context.Context, request api.RegisterRequest) int
+	Register(ctx echo.Context, request api.RegisterRequest) (int, error)
 }
