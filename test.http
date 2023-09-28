@@ -1,0 +1,40 @@
+### daftar
+POST http://localhost:3000/api/v1/daftar
+Accept: application/json
+Content-Type: application/json
+
+{
+  "nama": "Darul Ikhsan",
+  "nik": 730210,
+  "no_hp": "081355905756"
+}
+
+
+### tabung
+POST http://localhost:3000/api/v1/tabung
+Accept: application/json
+Content-Type: application/json
+
+{
+  "no_rekening": 110201,
+  "nominal": 5000
+}
+
+### tarik
+POST http://localhost:3000/api/v1/tarik
+Accept: application/json
+Content-Type: application/json
+
+{
+  "no_rekening": 110201,
+  "nominal": 5000
+}
+
+### cek saldo
+GET http://localhost:3000/api/v1/saldo/110201
+Accept: application/json
+
+
+### cek mutasi
+GET http://localhost:3000/api/v1/mutasi/110201
+Accept: application/json
